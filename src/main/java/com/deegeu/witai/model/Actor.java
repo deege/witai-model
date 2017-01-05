@@ -21,10 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.deegeu.chatbots.witai;
+package com.deegeu.witai.model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -41,43 +40,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "confidence",
-    "type",
-    "action",
-    "msg",
-    "quickreplies",
-    "entities"
+    "value"
 })
-public class WitAiResponse {
+public class Actor {
 
     @SerializedName("confidence")
     @Expose
     @JsonProperty("confidence")
     private double confidence;
 
-    @SerializedName("type")
+    @SerializedName("value")
     @Expose
-    @JsonProperty("type")
-    private String type;
-
-    @SerializedName("action")
-    @Expose
-    @JsonProperty("action")
-    private String action;
-
-    @SerializedName("msg")
-    @Expose
-    @JsonProperty("msg")
-    private String msg;
-
-    @SerializedName("quickreplies")
-    @Expose
-    @JsonProperty("quickreplies")
-    private List<String> quickreplies = null;
-
-    @SerializedName("entities")
-    @Expose
-    @JsonProperty("entities")
-    private Entities entities;
+    @JsonProperty("value")
+    private String value;
 
     @JsonIgnore
     final private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -92,83 +67,23 @@ public class WitAiResponse {
         this.confidence = confidence;
     }
 
-    public WitAiResponse withConfidence(double confidence) {
+    public Actor withConfidence(double confidence) {
         this.confidence = confidence;
         return this;
     }
 
-    @JsonProperty("type")
-    public String getType() {
-        return type;
+    @JsonProperty("value")
+    public String getValue() {
+        return value;
     }
 
-    @JsonProperty("type")
-    public void setType(String type) {
-        this.type = type;
+    @JsonProperty("value")
+    public void setValue(String value) {
+        this.value = value;
     }
 
-    public WitAiResponse withType(String type) {
-        this.type = type;
-        return this;
-    }
-
-    @JsonProperty("action")
-    public String getAction() {
-        return action;
-    }
-
-    @JsonProperty("action")
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public WitAiResponse withAction(String action) {
-        this.action = action;
-        return this;
-    }
-
-    @JsonProperty("msg")
-    public String getMsg() {
-        return msg;
-    }
-
-    @JsonProperty("msg")
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public WitAiResponse withMsg(String msg) {
-        this.msg = msg;
-        return this;
-    }
-
-    @JsonProperty("quickreplies")
-    public List<String> getQuickreplies() {
-        return quickreplies;
-    }
-
-    @JsonProperty("quickreplies")
-    public void setQuickreplies(List<String> quickreplies) {
-        this.quickreplies = quickreplies;
-    }
-
-    public WitAiResponse withQuickreplies(List<String> quickreplies) {
-        this.quickreplies = quickreplies;
-        return this;
-    }
-
-    @JsonProperty("entities")
-    public Entities getEntities() {
-        return entities;
-    }
-
-    @JsonProperty("entities")
-    public void setEntities(Entities entities) {
-        this.entities = entities;
-    }
-
-    public WitAiResponse withEntities(Entities entities) {
-        this.entities = entities;
+    public Actor withValue(String value) {
+        this.value = value;
         return this;
     }
 
@@ -182,7 +97,7 @@ public class WitAiResponse {
         this.additionalProperties.put(name, value);
     }
 
-    public WitAiResponse withAdditionalProperty(String name, Object value) {
+    public Actor withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
@@ -194,7 +109,7 @@ public class WitAiResponse {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(confidence).append(type).append(action).append(msg).append(quickreplies).append(entities).toHashCode();
+        return new HashCodeBuilder().append(confidence).append(value).toHashCode();
     }
 
     @Override
@@ -202,10 +117,11 @@ public class WitAiResponse {
         if (other == this) {
             return true;
         }
-        if ((other instanceof WitAiResponse) == false) {
+        if ((other instanceof Actor) == false) {
             return false;
         }
-        WitAiResponse rhs = ((WitAiResponse) other);
-        return new EqualsBuilder().append(confidence, rhs.confidence).append(type, rhs.type).append(action, rhs.action).append(msg, rhs.msg).append(quickreplies, rhs.quickreplies).append(entities, rhs.entities).isEquals();
+        Actor rhs = ((Actor) other);
+        return new EqualsBuilder().append(confidence, rhs.confidence).append(value, rhs.value).isEquals();
     }
+
 }

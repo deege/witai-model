@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.deegeu.chatbots.witai;
+package com.deegeu.witai.model;
 
 import java.util.HashMap;
 import java.util.Map;

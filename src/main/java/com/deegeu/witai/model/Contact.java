@@ -21,10 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.deegeu.chatbots.witai;
+package com.deegeu.witai.model;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -40,72 +39,93 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "contact",
-    "actor",
-    "intent"
+    "confidence",
+    "type",
+    "value",
+    "suggested"
 })
-public class Entities {
+public class Contact {
 
-    @SerializedName("contact")
+    @SerializedName("confidence")
     @Expose
-    @JsonProperty("contact")
-    private List<Contact> contact = null;
+    @JsonProperty("confidence")
+    private double confidence;
 
-    @SerializedName("actor")
+    @SerializedName("type")
     @Expose
-    @JsonProperty("actor")
-    private List<Actor> actor = null;
+    @JsonProperty("type")
+    private String type;
 
-    @SerializedName("intent")
+    @SerializedName("value")
     @Expose
-    @JsonProperty("intent")
-    private List<Intent> intent = null;
+    @JsonProperty("value")
+    private String value;
+
+    @SerializedName("suggested")
+    @Expose
+    @JsonProperty("suggested")
+    private boolean suggested;
 
     @JsonIgnore
     final private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("contact")
-    public List<Contact> getContact() {
-        return contact;
+    @JsonProperty("confidence")
+    public double getConfidence() {
+        return confidence;
     }
 
-    @JsonProperty("contact")
-    public void setContact(List<Contact> contact) {
-        this.contact = contact;
+    @JsonProperty("confidence")
+    public void setConfidence(double confidence) {
+        this.confidence = confidence;
     }
 
-    public Entities withContact(List<Contact> contact) {
-        this.contact = contact;
+    public Contact withConfidence(double confidence) {
+        this.confidence = confidence;
         return this;
     }
 
-    @JsonProperty("actor")
-    public List<Actor> getActor() {
-        return actor;
+    @JsonProperty("type")
+    public String getType() {
+        return type;
     }
 
-    @JsonProperty("actor")
-    public void setActor(List<Actor> actor) {
-        this.actor = actor;
+    @JsonProperty("type")
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public Entities withActor(List<Actor> actor) {
-        this.actor = actor;
+    public Contact withType(String type) {
+        this.type = type;
         return this;
     }
 
-    @JsonProperty("intent")
-    public List<Intent> getIntent() {
-        return intent;
+    @JsonProperty("value")
+    public String getValue() {
+        return value;
     }
 
-    @JsonProperty("intent")
-    public void setIntent(List<Intent> intent) {
-        this.intent = intent;
+    @JsonProperty("value")
+    public void setValue(String value) {
+        this.value = value;
     }
 
-    public Entities withIntent(List<Intent> intent) {
-        this.intent = intent;
+    public Contact withValue(String value) {
+        this.value = value;
+        return this;
+    }
+
+    @JsonProperty("suggested")
+    public boolean isSuggested() {
+        return suggested;
+    }
+
+    @JsonProperty("suggested")
+    public void setSuggested(boolean suggested) {
+        this.suggested = suggested;
+    }
+
+    public Contact withSuggested(boolean suggested) {
+        this.suggested = suggested;
         return this;
     }
 
@@ -119,7 +139,7 @@ public class Entities {
         this.additionalProperties.put(name, value);
     }
 
-    public Entities withAdditionalProperty(String name, Object value) {
+    public Contact withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
@@ -131,7 +151,7 @@ public class Entities {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(contact).append(actor).append(intent).toHashCode();
+        return new HashCodeBuilder().append(confidence).append(type).append(value).append(suggested).toHashCode();
     }
 
     @Override
@@ -139,10 +159,11 @@ public class Entities {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Entities) == false) {
+        if ((other instanceof Contact) == false) {
             return false;
         }
-        Entities rhs = ((Entities) other);
-        return new EqualsBuilder().append(contact, rhs.contact).append(actor, rhs.actor).append(intent, rhs.intent).isEquals();
+        Contact rhs = ((Contact) other);
+        return new EqualsBuilder().append(confidence, rhs.confidence).append(type, rhs.type).append(value, rhs.value).append(suggested, rhs.suggested).isEquals();
     }
+
 }
