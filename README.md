@@ -16,7 +16,7 @@ mvn clean install -Dproject.version=1.0.0 -Dbuild.number=$BUILD_NUMBER
 
 Add the most recent JAR to your project.
 
-All objects are created using builders. The builders perform some validation, to ensure the JSON created will be accepted by the Facebook Messenger platform.
+All objects are created using builders. The builders perform some validation, to ensure the JSON created will be accepted by the WitAI API.
 
 Here's an example for sending a simple message using JAX-RS and GSON.
 
