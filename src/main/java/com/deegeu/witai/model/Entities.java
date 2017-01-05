@@ -21,9 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.deegeu.chatbots.witai;
+package com.deegeu.witai.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -39,51 +40,72 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "confidence",
-    "value"
+    "contact",
+    "actor",
+    "intent"
 })
-public class Actor {
+public class Entities {
 
-    @SerializedName("confidence")
+    @SerializedName("contact")
     @Expose
-    @JsonProperty("confidence")
-    private double confidence;
+    @JsonProperty("contact")
+    private List<Contact> contact = null;
 
-    @SerializedName("value")
+    @SerializedName("actor")
     @Expose
-    @JsonProperty("value")
-    private String value;
+    @JsonProperty("actor")
+    private List<Actor> actor = null;
+
+    @SerializedName("intent")
+    @Expose
+    @JsonProperty("intent")
+    private List<Intent> intent = null;
 
     @JsonIgnore
     final private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("confidence")
-    public double getConfidence() {
-        return confidence;
+    @JsonProperty("contact")
+    public List<Contact> getContact() {
+        return contact;
     }
 
-    @JsonProperty("confidence")
-    public void setConfidence(double confidence) {
-        this.confidence = confidence;
+    @JsonProperty("contact")
+    public void setContact(List<Contact> contact) {
+        this.contact = contact;
     }
 
-    public Actor withConfidence(double confidence) {
-        this.confidence = confidence;
+    public Entities withContact(List<Contact> contact) {
+        this.contact = contact;
         return this;
     }
 
-    @JsonProperty("value")
-    public String getValue() {
-        return value;
+    @JsonProperty("actor")
+    public List<Actor> getActor() {
+        return actor;
     }
 
-    @JsonProperty("value")
-    public void setValue(String value) {
-        this.value = value;
+    @JsonProperty("actor")
+    public void setActor(List<Actor> actor) {
+        this.actor = actor;
     }
 
-    public Actor withValue(String value) {
-        this.value = value;
+    public Entities withActor(List<Actor> actor) {
+        this.actor = actor;
+        return this;
+    }
+
+    @JsonProperty("intent")
+    public List<Intent> getIntent() {
+        return intent;
+    }
+
+    @JsonProperty("intent")
+    public void setIntent(List<Intent> intent) {
+        this.intent = intent;
+    }
+
+    public Entities withIntent(List<Intent> intent) {
+        this.intent = intent;
         return this;
     }
 
@@ -97,7 +119,7 @@ public class Actor {
         this.additionalProperties.put(name, value);
     }
 
-    public Actor withAdditionalProperty(String name, Object value) {
+    public Entities withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
@@ -109,7 +131,7 @@ public class Actor {
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(confidence).append(value).toHashCode();
+        return new HashCodeBuilder().append(contact).append(actor).append(intent).toHashCode();
     }
 
     @Override
@@ -117,11 +139,10 @@ public class Actor {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Actor) == false) {
+        if ((other instanceof Entities) == false) {
             return false;
         }
-        Actor rhs = ((Actor) other);
-        return new EqualsBuilder().append(confidence, rhs.confidence).append(value, rhs.value).isEquals();
+        Entities rhs = ((Entities) other);
+        return new EqualsBuilder().append(contact, rhs.contact).append(actor, rhs.actor).append(intent, rhs.intent).isEquals();
     }
-
 }
